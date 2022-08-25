@@ -42,8 +42,9 @@ func main() {
 	mux.Handle("/", fileHeader)
 
 	server := &http.Server{
-		Addr:           ":9010",
-		Handler:        mux,
+		Addr:    ":9010",
+		Handler: mux,
+		// Buena Practica : reforzar los timeouts !!!!
 		ReadTimeout:    10 * time.Second,
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
