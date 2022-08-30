@@ -49,11 +49,14 @@ func main() {
 		WriteTimeout:   10 * time.Second,
 		MaxHeaderBytes: 1 << 20,
 	}
-	log.Println("Listening...")
+	log.Println("Listening on 9010...")
+
 	log.Fatal(server.ListenAndServe())
 
-	err = tHtml.ExecuteTemplate(os.Stdout, "tmplPie", oPie)
+	err = tHtml.ExecuteTemplate(os.Stdout, "ppal", oPie)
 	if err != nil {
 		panic(err)
 	}
+	tHtml.ExecuteTemplate(os.Stdout, "ppal")
+
 }
