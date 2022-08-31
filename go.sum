@@ -1,2 +1,4 @@
 github.com/gorilla/mux v1.8.0 h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=
 github.com/gorilla/mux v1.8.0/go.mod h1:DVbg23sWSpFRCP0SfiEN6jmj59UnW/n46BH5rLB71So=
+github.com/philippta/web-frontend-demo v0.0.0-20210318131941-b26b80a88c40 h1:7+JO9aG8LvesKcE0+wA5YbiwLclMlkAGCytlwuxoYO0=
+github.com/philippta/web-frontend-demo v0.0.0-20210318131941-b26b80a88c40/go.mod h1:2P88mRhanTPDTYETYkzgVmxSocowS49oEli4aX0QAmk=
