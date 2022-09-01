@@ -1,38 +1,34 @@
 package main
 
 import (
+	"fmt"
+	"log"
 	"net/http"
+	"time"
 
-	"github.com/philippta/web-frontend-demo/html"
+	"github.com/gorilla/mux"
 )
 
+func metodo(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Fprintf(w, "Mensaje metodo")
+
+}
+
 func main() {
-	http.HandleFunc("/dashboard", dashboard)
-	http.HandleFunc("/profile/show", profileShow)
-	http.HandleFunc("/profile/edit", profileEdit)
-	http.ListenAndServe(":8080", nil)
-}
 
-func dashboard(w http.ResponseWriter, r *http.Request) {
-	p := html.DashboardParams{
-		Title:   "Dashboard",
-		Message: "Hello from dashboard",
-	}
-	html.Dashboard(w, p)
-}
+	r := mux.NewRouter().StrictSlash(false)
+	r.HandleFunc("/", metodo).Methods("GET")
 
-func profileShow(w http.ResponseWriter, r *http.Request) {
-	p := html.ProfileShowParams{
-		Title:   "Profile Show",
-		Message: "Hello from profile show",
+	server := &http.Server{
+		Addr:           ":8080",
+		Handler:        r,
+		ReadTimeout:    10 * time.Second,
+		WriteTimeout:   10 * time.Second,
+		MaxHeaderBytes: 1 << 20,
 	}
-	html.ProfileShow(w, p)
-}
 
-func profileEdit(w http.ResponseWriter, r *http.Request) {
-	p := html.ProfileEditParams{
-		Title:   "Profile Edit",
-		Message: "Hello from profile edit",
-	}
-	html.ProfileEdit(w, p)
+	log.Println("Listening on 8080 ...")
+	server.ListenAndServe()
+
 }
